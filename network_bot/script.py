@@ -62,9 +62,6 @@ def create_user_post(user_token, posts_data):
 def main():
     user_tokens = get_user_token(user_data)
     user_create_posts = create_user_post(user_tokens, post_data_list)
-    print(user_create_posts)
-    print('----------------------------------------------------------------------------')
-    print(post_data_list)
 
 
 main()
