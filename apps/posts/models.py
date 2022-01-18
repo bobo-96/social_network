@@ -26,6 +26,19 @@ class Post(models.Model):
         upload_to='post_image/',
         verbose_name='Картинка')
 
+    likes = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True,
+        verbose_name='Лайки'
+    )
+    dislikes = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True,
+        verbose_name='Дизлайки'
+    )
+
     class Meta:
         verbose_name = "Пост"
         verbose_name_plural = "Посты"
@@ -33,38 +46,3 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title}'
-
-
-class PostLike(models.Model):
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE,
-        related_name='post_like'
-    )
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        related_name='user_like'
-    )
-    liked_on = models.DateTimeField(
-        auto_now_add=True
-    )
-
-    def __str__(self):
-        return f'{self.id}'
-
-
-class PostDisLike(models.Model):
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE,
-        related_name='post_dislike',
-        null=True, blank=True)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        related_name='user_dislike',
-        null=True, blank=True
-    )
-    liked_on = models.DateTimeField(
-        auto_now_add=True
-    )
-
-    def __str__(self):
-        return f'{self.id}'

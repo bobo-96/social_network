@@ -7,7 +7,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from apps.posts.views import PostLikeView
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -25,6 +25,7 @@ schema_view = get_schema_view(
 api_urlpatterns = [
     path('users/', include('apps.users.urls')),
     path('posts/', include('apps.posts.urls')),
+    path('likes/', include('apps.likes.urls')),
 ]
 
 urlpatterns = [

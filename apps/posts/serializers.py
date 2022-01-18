@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.posts.models import Post, PostLike
+from apps.posts.models import Post
 from apps.users.serializers import UserDetailSerializer
 
 
@@ -9,7 +9,9 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'description', 'created_on', 'image', 'owner']
+        fields = ['id', 'title', 'description', 'created_on', 'image', 'owner', 'likes', 'dislikes']
+
+        read_only_fields = ('id','likes', 'dislikes', 'created_on')
 
     def create(self, validated_data):
         user = self.context.get('request').user
@@ -17,17 +19,3 @@ class PostSerializer(serializers.ModelSerializer):
         return post
 
 
-class PostLikeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PostLike
-        fields = ['id', 'post', 'user', 'liked_on']
-
-
-class LikeByDaySerializer(serializers.ModelSerializer):
-    date = serializers.DateTimeField()
-    likes = serializers.IntegerField()
-    post = PostSerializer(read_only=True)
-
-    class Meta:
-        model = PostLike
-        fields = ('date', 'likes', 'post')

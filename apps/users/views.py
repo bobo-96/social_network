@@ -8,7 +8,3 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
 
-    def get_serializer_class(self):
-        if self.action in ["create"]:
-            return serializers.UserCreateSerializer
-        return self.serializer_class

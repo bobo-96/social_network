@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django_filters',
     # apps
     'apps.users',
-    'apps.posts'
+    'apps.posts',
+    'apps.likes',
 
 
 ]

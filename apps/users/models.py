@@ -9,10 +9,6 @@ class User(AbstractUser):
         unique=True,
         verbose_name="Email"
     )
-    password_repeat = models.CharField(
-        max_length=255,
-        blank=True, null=True
-    )
     last_activity = models.DateTimeField(
         null=True, blank=True
     )
